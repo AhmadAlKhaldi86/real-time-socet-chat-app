@@ -1,0 +1,27 @@
+{
+  "name": "real-time-socet-chat-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node chat-app/src/index.js",
+    "dev": "nodemon chat-app/src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmadAlKhaldi86/real-time-socet-chat-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmadAlKhaldi86/real-time-socet-chat-app/issues"
+  },
+  "homepage": "https://github.com/AhmadAlKhaldi86/real-time-socet-chat-app#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
