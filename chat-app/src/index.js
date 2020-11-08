@@ -17,9 +17,28 @@ app.use(express.static(publicDirPath))
 
 // Listening for an even to come. 'connection'. But we need a client to connect. look in public/index.html
 // Once you setup client.js and index.js when refresh webpage localhost:3000 you should see the log.
-io.on('connection', () => {
-  console.log('New Socket Connection')
+
+// Socket Test Function: S
+// socket  passed to function as object and contains info about the client connecting. 
+// We will use methods in socket object to communicate with clients. 
+// We will update clients by emiting updates. But then the client needs to be able to receive updates. Check client.js
+let count = 0
+io.on('connection', (socket) => {
+  socket.emit('updatedCount', count)
+  console.log('New Socket Connection');
+
+  socket.on('inc', () => {
+    count++
+    // socket.emit('updatedCount', count) // This will work but it will only update the one client who is inc the count.
+    io.emit('updatedCount', count)
+  })
 })
+
+
+
+
+
+
 
 
 server.listen(port, () => {
