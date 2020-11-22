@@ -1,7 +1,7 @@
 const path          = require('path');
 const http          = require('http');
 const express       = require('express');
-const socketIo        = require('socket.io');
+const socketIo        = require('socket.io'); // server side socket lib
 
 const app           = express();
 const server        = http.createServer(app) // create a server outside of express. express by default does that in the background.
@@ -15,10 +15,10 @@ const publicDirPath = path.join(__dirname, '../public') //  Socket Server also e
 app.use(express.static(publicDirPath))
 
 
-// Listening for an even to come. 'connection'. But we need a client to connect. look in public/index.html
-// Once you setup client.js and index.js when refresh webpage localhost:3000 you should see the log.
 
-// Socket Test Function: S
+/*
+// Socket Test Function: counter update all the clients opening webpage localhost:3000 with current counts
+// inspect each client connection 
 // socket  passed to function as object and contains info about the client connecting. 
 // We will use methods in socket object to communicate with clients. 
 // We will update clients by emiting updates. But then the client needs to be able to receive updates. Check client.js
@@ -29,12 +29,21 @@ io.on('connection', (socket) => {
 
   socket.on('inc', () => {
     count++
-    // socket.emit('updatedCount', count) // This will work but it will only update the one client who is inc the count.
+    // socket.emit('updatedCount', count) // This will work but it will only update the one client who is inc the count. so we replace below with io.emit
     io.emit('updatedCount', count)
   })
 })
+*/
 
+io.on('connection', (socket) => {
+  socket.emit('welcome', 'Welcome to chat app')
+    console.log('New client is welcomed from the server sent')
 
+  socket.on('sendMessage', (msg) => {
+    console.log('value submitted')
+    io.emit('updateClients', msg)
+  })
+})
 
 
 
