@@ -10,6 +10,11 @@
 - Persistent connection : The client can keep the connection open as long as it needs to.
 - HTTP to establish one direction communication from client to server  (send request get response).
 
+### Feaataures
+
+- Broadcast  : When a new user enters/leaves the room everyone else will get an update.  except  the user himself.
+- Geo-location: When a user accepts to share their location. Using browser geo-location API <https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API>
+
 ### Run application
 
 - prod: npm run start

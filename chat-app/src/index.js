@@ -36,13 +36,22 @@ io.on('connection', (socket) => {
 */
 
 io.on('connection', (socket) => {
-  socket.emit('welcome', 'Welcome to chat app')
-    console.log('New client is welcomed from the server sent')
+  socket.emit('updateClients', 'Welcome to chat app') // Send a message to the user on this socket.
+
+  socket.broadcast.emit('updateClients', 'A new user has joined') // send a message to all users in the room.
 
   socket.on('sendMessage', (msg) => {
-    console.log('value submitted')
     io.emit('updateClients', msg)
   })
+
+  socket.on('disconnect', () => {
+    io.emit('updateClients','A user has disconnected') // Send a message to  all sockets.
+  })
+
+  socket.on('sendLocation', (coords) => {
+    io.emit('updateClients', `https://www.google.com/maps?q=${coords.latitude},${coords.longitude}`)
+  })
+
 })
 
 
