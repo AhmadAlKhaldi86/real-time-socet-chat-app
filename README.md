@@ -20,6 +20,11 @@
 - prod: npm run start
 - local/dev: npm run dev
 
+### Test the application
+
+- Run npm test.
+- tests written under tests/ for this application.
+
 ### Resources
 
 - <https://socket.io>
